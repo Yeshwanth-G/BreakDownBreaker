@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".chooser">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:id="@+id/recruiter_card"
+        android:layout_height="450px"
+        android:layout_marginBottom="350dp"
+        android:layout_marginTop="-50dp"
+       android:layout_marginRight="100dp"
+        android:layout_marginLeft="100dp"
+        android:clickable="true"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="100px"
+
+        android:backgroundTint="@color/basecolor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/recruiter"
+           android:gravity="center"
+            android:layout_width="160dp"
+            android:layout_height="90dp"
+            android:layout_margin="40dp"
+            android:textColor="@color/white"
+            android:textSize="25dp"
+            android:fontFamily="@font/font2"
+            android:text="RECRUITER" />
+
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:id="@+id/seeker_card"
+        android:layout_height="450px"
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginLeft="100dp"
+        android:clickable="true"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="100px"
+        android:backgroundTint="@color/basecolor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/seeker"
+            android:gravity="center"
+            android:layout_width="140dp"
+            android:layout_height="90dp"
+            android:layout_margin="40dp"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:fontFamily="@font/font2"
+            android:text="SEEKER" />
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

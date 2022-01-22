@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:ignore="MissingDefaultResource"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    tools:context=".JobDetails">
+    <TextView
+        android:id="@+id/heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="600dp" android:fontFamily="@font/font2"
+        android:text="Job Posting"
+        android:textColor="@color/basecolor"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <EditText
+        android:id="@+id/company"
+        android:layout_width="350dp"
+        android:hint="Company or Organisation"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heading"/>
+    <EditText
+        android:id="@+id/jobtitle"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:hint="Job Title"
+        android:layout_marginTop="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heading"/>
+
+    <EditText
+    android:id="@+id/location"
+    android:layout_width="350dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="150dp"
+    android:hint="Location"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/heading"/>
+    <EditText
+        android:id="@+id/salary"
+    android:layout_width="350dp"
+    android:hint="Salary"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="200dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/heading"/>
+    <EditText
+    android:layout_width="350dp"
+        android:id="@+id/duration"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="250dp"
+    android:hint="Job Duration and Time Period"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/heading"/>
+    <EditText
+        android:id="@+id/temp"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:hint="Job Duration"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heading"/>
+    <EditText
+        android:layout_width="350dp"
+        android:id="@+id/gender"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="350dp"
+        android:hint="Gender Preference(if any)"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heading"/>
+    <EditText
+        android:layout_width="350dp"
+        android:id="@+id/link"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="400dp"
+        android:hint="Application Form Link or website Link"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heading"/>
+    <Button
+        android:id="@+id/post_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/basecolor"
+        android:text="Post"
+        android:fontFamily="@font/font2"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/duration"
+        app:layout_constraintVertical_bias="0.6" />
+</androidx.constraintlayout.widget.ConstraintLayout>
