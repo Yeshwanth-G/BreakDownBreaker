@@ -9,7 +9,7 @@
     tools:context=".jobview">
 
     <TextView
-        android:id="@+id/jobtitle"
+        android:id="@+id/jobtitle1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="150dp"
@@ -25,7 +25,7 @@
         app:layout_constraintVertical_bias="0.188" />
 
     <TextView
-        android:id="@+id/jobtitle"
+        android:id="@+id/jobtitle2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -41,7 +41,7 @@
         app:layout_constraintVertical_bias="0.377" />
 
     <TextView
-        android:id="@+id/jobtitle"
+        android:id="@+id/jobtitle3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"

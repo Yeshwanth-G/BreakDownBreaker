@@ -1,11 +1,9 @@
-package com.example.googlesignin;
+package com.example.breakdownbreaker;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -95,12 +93,12 @@ public class MainActivity extends AppCompatActivity {
                     if(documentSnapshot.exists()){
                         String s=documentSnapshot.get("option").toString();
                         if(s.equals("recruiter")){
-                            Intent it=new Intent(MainActivity.this,Recruiter.class);
+                            Intent it=new Intent(MainActivity.this,MapActivity.class);
                             startActivity(it);
                             finish();
                         }
                         else if(s.equals("seeker")){
-                            Intent it=new Intent(MainActivity.this,seeker.class);
+                            Intent it=new Intent(MainActivity.this,MapActivity.class);
                             startActivity(it);
                             finish();
                         }
@@ -115,7 +113,8 @@ public class MainActivity extends AppCompatActivity {
         else{
             pg.setVisibility(View.INVISIBLE);
             Toast.makeText(this,"Sign in Failed",Toast.LENGTH_LONG).show();
-        }}
+        }
+    }
     private void handleSignInResult(Task<GoogleSignInAccount> task) {
         try {
             GoogleSignInAccount account = task.getResult(ApiException.class);
@@ -133,4 +132,5 @@ public class MainActivity extends AppCompatActivity {
         } catch (ApiException e) {
             Toast.makeText(MainActivity.this,"Sign in failed.....!!",Toast.LENGTH_LONG).show();
         }
-    }}
+    }
+}

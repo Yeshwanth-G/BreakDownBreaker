@@ -34,7 +34,7 @@
             android:textColor="@color/white"
             android:textSize="25dp"
             android:fontFamily="@font/font2"
-            android:text="RECRUITER" />
+            android:text="MECHANIC" />
 
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
@@ -61,9 +61,9 @@
             android:layout_height="90dp"
             android:layout_margin="40dp"
             android:textColor="@color/white"
-            android:textSize="30dp"
+            android:textSize="23dp"
             android:fontFamily="@font/font2"
-            android:text="SEEKER" />
+            android:text="TRAVELLER" />
     </androidx.cardview.widget.CardView>
 
 

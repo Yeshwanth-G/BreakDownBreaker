@@ -1,12 +1,9 @@
-package com.example.googlesignin;
+package com.example.breakdownbreaker;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
 public class card extends AppCompatActivity {
     @Override

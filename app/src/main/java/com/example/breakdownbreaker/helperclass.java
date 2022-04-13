@@ -1,4 +1,4 @@
-package com.example.googlesignin;
+package com.example.breakdownbreaker;
 public class helperclass {
  String company,title,location,salary,duration,gender,link,posted_by;
 public helperclass(){
