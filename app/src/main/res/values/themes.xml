@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="AppDialogTheme" parent="Theme.AppCompat.Dialog"></style>
 
-    <style name="Theme.GoogleSignIn" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.GoogleSignIn" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">#0DFBFBF8</item>
         <item name="colorPrimaryVariant">#EA980D</item>

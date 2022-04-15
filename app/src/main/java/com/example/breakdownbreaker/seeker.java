@@ -64,7 +64,7 @@ Button sout;
     }
     @Override
     public void onItemClick(int position) {
-        Intent it=new Intent(seeker.this,jobview.class);
+        Intent it=new Intent(seeker.this, shop_details.class);
         startActivity(it);
     }
 }

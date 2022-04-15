@@ -1,12 +1,14 @@
 package com.example.breakdownbreaker;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-public class jobview extends AppCompatActivity {
+
+public class details extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_jobview);
+        setContentView(R.layout.activity_details);
     }
 }

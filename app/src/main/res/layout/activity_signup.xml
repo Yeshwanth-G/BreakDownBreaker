@@ -38,71 +38,37 @@
         app:layout_constraintTop_toBottomOf="@+id/heading"/>
 
     <EditText
-        android:id="@+id/company"
+        android:id="@+id/contact"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
-        android:hint="current working company"
+        android:hint="contact details"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/heading"/>
+
     <EditText
-        android:id="@+id/position"
+        android:id="@+id/vehicle"
         android:layout_width="350dp"
-        android:hint="working position"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
+        android:hint="vehicle no.(optional)"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/heading"/>
-    <EditText
-        android:layout_width="350dp"
-        android:id="@+id/experience"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="250dp"
-        android:hint="experince"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/heading"/>
-    <EditText
-        android:id="@+id/address"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:hint="address"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/heading"/>
-    <EditText
-        android:layout_width="350dp"
-        android:id="@+id/gender"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="350dp"
-        android:hint="Gender"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/heading"/>
-    <EditText
-        android:layout_width="350dp"
-        android:id="@+id/link"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="400dp"
-        android:hint="company profile link"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/heading"/>
+        app:layout_constraintTop_toBottomOf="@+id/heading" />
+
     <Button
         android:id="@+id/post_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/basecolor"
-        android:text="Post"
         android:fontFamily="@font/font2"
+        android:text="register"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/duration"
+        app:layout_constraintTop_toBottomOf="@+id/vehicle"
         app:layout_constraintVertical_bias="0.6" />
 </androidx.constraintlayout.widget.ConstraintLayout>

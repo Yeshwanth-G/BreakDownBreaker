@@ -91,20 +91,11 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     if(documentSnapshot.exists()){
-                        String s=documentSnapshot.get("option").toString();
-                        if(s.equals("recruiter")){
                             Intent it=new Intent(MainActivity.this,MapActivity.class);
                             startActivity(it);
                             finish();
-                        }
-                        else if(s.equals("seeker")){
-                            Intent it=new Intent(MainActivity.this,MapActivity.class);
-                            startActivity(it);
-                            finish();
-                        }
                     }
                     else{
-                        pg.setVisibility(View.INVISIBLE);
                         Toast.makeText(MainActivity.this,"Please SignUp First",Toast.LENGTH_LONG).show();
                     }
                 }
@@ -112,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
     }
         else{
             pg.setVisibility(View.INVISIBLE);
-            Toast.makeText(this,"Sign in Failed",Toast.LENGTH_LONG).show();
         }
     }
     private void handleSignInResult(Task<GoogleSignInAccount> task) {

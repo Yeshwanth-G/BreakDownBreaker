@@ -73,7 +73,7 @@ DatabaseReference d;
 
     @Override
     public void onItemClick(int position) {
-        Intent it=new Intent(Recruiter.this,jobview.class);
+        Intent it=new Intent(Recruiter.this, shop_details.class);
         startActivity(it);
     }
 }

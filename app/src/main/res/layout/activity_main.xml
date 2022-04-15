@@ -15,6 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pgbar" />
+
     <ProgressBar
         android:id="@+id/pgbar"
         android:layout_width="wrap_content"
@@ -29,10 +30,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
     </ProgressBar>
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/signup_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:cornerRadius="20dp"
         android:text="Sign Up"
         android:backgroundTint="@color/basecolor"
         app:layout_constraintBottom_toBottomOf="parent"
