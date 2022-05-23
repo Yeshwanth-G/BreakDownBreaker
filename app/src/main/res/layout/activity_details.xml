@@ -29,6 +29,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:id="@+id/name"
+            android:textCursorDrawable="@null"
             android:layout_height="wrap_content"
             android:hint="Name of Shop"
 
@@ -36,31 +37,36 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout3"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="300dp"
-        app:boxCornerRadiusBottomEnd="6dp"
         android:padding="10dp"
+        app:boxCornerRadiusBottomEnd="6dp"
         app:boxCornerRadiusBottomStart="6dp"
         app:boxCornerRadiusTopEnd="6dp"
         app:boxCornerRadiusTopStart="6dp"
         app:boxStrokeColor="#0C0C0C"
         app:boxStrokeWidth="2dp"
-        app:startIconDrawable="@drawable/ic_baseline_location_on_24"
         app:expandedHintEnabled="true"
         app:hintTextColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:startIconDrawable="@drawable/ic_baseline_location_on_24">
+
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="location"
-            android:id="@+id/location"
+
+            android:textCursorDrawable="@null"
 
             ></com.google.android.material.textfield.TextInputEditText>
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -88,6 +94,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="contact details"
+            android:textCursorDrawable="@null"
             android:id="@+id/contact"
 
             ></com.google.android.material.textfield.TextInputEditText>
@@ -117,6 +124,7 @@ android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="services availiable"
+            android:textCursorDrawable="@null"
             android:id="@+id/services"
 
             ></com.google.android.material.textfield.TextInputEditText>
@@ -147,6 +155,7 @@ android:padding="10dp"
             android:id="@+id/working_hours"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textCursorDrawable="@null"
             android:hint="working hours"
 
             ></com.google.android.material.textfield.TextInputEditText>
@@ -179,5 +188,17 @@ android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+
+    <ImageButton
+        android:id="@+id/clocation"
+        android:layout_width="33dp"
+        android:layout_height="26dp"
+        android:layout_marginLeft="280dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/textInputLayout3"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textInputLayout3"
+        app:srcCompat="@drawable/ic_baseline_location_searching_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

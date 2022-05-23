@@ -52,8 +52,12 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:id="@+id/email"
+            android:inputType="textEmailAddress"
+            android:cursorVisible="true"
             android:layout_height="wrap_content"
             android:hint="Email address"
+            android:textCursorDrawable="@null"
+
 
             ></com.google.android.material.textfield.TextInputEditText>
 
@@ -75,14 +79,18 @@
             app:expandedHintEnabled="true"
             app:hintTextColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:passwordToggleEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:id="@+id/password"
+                android:inputType="textPassword"
                 android:layout_height="wrap_content"
                 android:hint="Password"
+                android:cursorVisible="true"
+                android:textCursorDrawable="@null"
 
                 ></com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>

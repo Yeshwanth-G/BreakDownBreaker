@@ -2,11 +2,13 @@ package com.example.breakdownbreaker;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +25,7 @@ public class JobDetails extends AppCompatActivity {
 FirebaseAuth auth= FirebaseAuth.getInstance();
 TextView txt;
 FirebaseUser user=auth.getCurrentUser();
+ImageButton clocation;
     Button b;
     FirebaseDatabase f;
     DatabaseReference d,temp;
@@ -34,6 +37,7 @@ FirebaseUser user=auth.getCurrentUser();
         contact=(EditText)findViewById(R.id.contact);
         location=(EditText)findViewById(R.id.location);
         working_hours=(EditText)findViewById(R.id.working_hours);
+        clocation=(ImageButton)findViewById(R.id.clocation);
         services=(EditText)findViewById(R.id.services);
         b=(Button)findViewById(R.id.materialButton);
         txt=(TextView)findViewById(R.id.messege);
@@ -41,6 +45,7 @@ FirebaseUser user=auth.getCurrentUser();
         f=FirebaseDatabase.getInstance();
         d=f.getReference("shops");
         temp=f.getReference("count");
+
         temp.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
@@ -72,10 +77,20 @@ FirebaseUser user=auth.getCurrentUser();
                 Toast.makeText(JobDetails.this,"Successfully Added GO back and Check",Toast.LENGTH_LONG).show();
             }
         });
+        clocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it=getIntent();
+                location1=it.getExtras().get("clocation").toString();
+                location.setText("your location:"+location1);
+
+            }
+        });
     }
 
     private void setfields() {
         name1=name.getText().toString();
+        if(location1.isEmpty())
         location1=location.getText().toString();
         contact1=contact.getText().toString();
         woking1=working_hours.getText().toString();

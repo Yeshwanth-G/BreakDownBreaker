@@ -24,12 +24,14 @@
         android:layout_width="350dp"
         android:hint="Name of the Person"
         android:layout_height="wrap_content"
+        android:textCursorDrawable="@null"
         android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/heading"/>
     <EditText
         android:id="@+id/contact"
+        android:textCursorDrawable="@null"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:hint="contact details"
@@ -43,6 +45,7 @@
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
+        android:textCursorDrawable="@null"
         android:hint="vehicle no.(optional)"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,6 +55,7 @@
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
+        android:textCursorDrawable="@null"
         android:hint="email id(will be used for signing in later)"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,6 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="250dp"
         android:hint="Password"
+        android:textCursorDrawable="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/heading"/>

@@ -130,7 +130,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         addbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent it = new Intent(MapActivity.this, JobDetails.class);
+                it.putExtra("clocation",currentlatlag.latitude+","+currentlatlag.longitude);
                 startActivity(it);
             }
         });
@@ -289,11 +291,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                             Location.distanceBetween(currentlatlag.latitude, currentlatlag.longitude, gang.latitude, gang.longitude, result);
                             DecimalFormat decimalFormat = new DecimalFormat("#.##");
                             result[0] = Float.valueOf(decimalFormat.format(result[0] / 1000.0));
+                            if(result[0]<300){
                             Marker mkr = mMap.addMarker(new MarkerOptions().position(gang).title(c.getName() + "(" + result[0] + "kms away)"));
                             hashMap.put(mkr.getPosition(), c);
                             clicks.put(mkr.getPosition(), "0");
                             helper.put(mkr, c);
-                            c.setDistance("" + result[0]);
+                            c.setDistance("" + result[0]);}
                         }
                     });
                 }
@@ -302,11 +305,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     Location.distanceBetween(currentlatlag.latitude, currentlatlag.longitude, gang.latitude, gang.longitude, result);
                     DecimalFormat decimalFormat = new DecimalFormat("#.##");
                     result[0] = Float.valueOf(decimalFormat.format(result[0] / 1000.0));
+                    if(result[0]<300){
                     Marker mkr = mMap.addMarker(new MarkerOptions().position(gang).title(c.getName() + "(" + result[0] + "kms away)"));
                     hashMap.put(mkr.getPosition(), c);
                     clicks.put(mkr.getPosition(), "0");
                     helper.put(mkr, c);
-                    c.setDistance("" + result[0]);
+                    c.setDistance("" + result[0]);}
                 }
             }
         } catch (IOException e) {
