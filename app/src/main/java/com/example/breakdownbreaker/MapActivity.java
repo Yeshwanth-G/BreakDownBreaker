@@ -1,11 +1,13 @@
 package com.example.breakdownbreaker;
 //>-----------------Android studio imports required libraries----------<
+
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
 import android.Manifest;
 import android.app.Dialog;
 import android.content.Intent;
@@ -32,8 +34,11 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -58,35 +63,36 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     LatLng currentlatlag;
     private FusedLocationProviderClient mFusedLocationclient;
     private GoogleMap mMap;
-    FloatingActionButton addbtn;
-    HashMap<LatLng,container>hashMap;
-    HashMap<LatLng,String>clicks;
+    FloatingActionButton addbtn, logoutbtn;
+    HashMap<LatLng, container> hashMap;
+    HashMap<LatLng, String> clicks;
     Marker marker;
-    ArrayList<container>arrayList;
+    ArrayList<container> arrayList;
     LocationManager locationm;
-    HashMap<Marker,container>helper;
+    HashMap<Marker, container> helper;
     FirebaseDatabase f;
     DatabaseReference d;
     MapFragment mapFragment;
+
     private Address ad;
 
-    //
-//<------------------------------------------------------->
+    //<------------------------------------------------------->
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);//linking to our xml file
-        addbtn=(FloatingActionButton)findViewById(R.id.addbtn);
-        f=FirebaseDatabase.getInstance();
-        d=f.getReference("shops");
-        clicks=new HashMap<>();
-        hashMap=new HashMap<>();
-        helper=new HashMap<>();
-        arrayList=new ArrayList<>();
-        dialog=new Dialog(MapActivity.this);
+        addbtn = (FloatingActionButton) findViewById(R.id.addbtn);
+        logoutbtn = (FloatingActionButton) findViewById(R.id.logoutbtn);
+        f = FirebaseDatabase.getInstance();
+        d = f.getReference("shops");
+        clicks = new HashMap<>();
+        hashMap = new HashMap<>();
+        helper = new HashMap<>();
+        arrayList = new ArrayList<>();
+        dialog = new Dialog(MapActivity.this);
         dialog.setContentView(R.layout.progress);
         dialog.setCanceledOnTouchOutside(false);
-        mapFragment=(MapFragment)getFragmentManager().findFragmentById(R.id.map);//intialising support mapfragment to contain our map
+        mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);//intialising support mapfragment to contain our map
         mapFragment.getMapAsync(this);//syncing map,once its ready onMapReadyCallback is called()
 //>--------checking whther location permissions are granted and gps is enabled else direct user to enable them-----------<
         mFusedLocationclient = LocationServices.getFusedLocationProviderClient(this);
@@ -94,12 +100,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1009);
                 }
             }
         }
-        if(isGPSEnabled());
+        if (isGPSEnabled()) ;
         locationm = (LocationManager) getSystemService(LOCATION_SERVICE);
 //<------------------------------------------------------------------------------------------------------------------------>
 //>------------------------------Checking and updating location of user----------------------------------------------------<
@@ -109,68 +115,79 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             public void onLocationChanged(@NonNull Location location) {
                 if (marker != null)
                     marker.remove();
-                LatLng latLng= new LatLng(location.getLatitude(), location.getLongitude());
-                if(currentlatlag!=latLng){
-                    currentlatlag=latLng;
-                marker = mMap.addMarker(new MarkerOptions().position(currentlatlag).title("Your Location").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
-                mMap.animateCamera(CameraUpdateFactory.newLatLng(currentlatlag));}
-update_distances();            }
+                LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                if (currentlatlag != latLng) {
+                    currentlatlag = latLng;
+                    marker = mMap.addMarker(new MarkerOptions().position(currentlatlag).title("Your Location").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+                    mMap.animateCamera(CameraUpdateFactory.newLatLng(currentlatlag));
+                }
+                update_distances();
+            }
 
 
         });
 //<------------------------------------------------------------------------------------------------------------------------>
-    addbtn.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent it=new Intent(MapActivity.this,JobDetails.class);
-            startActivity(it);
-        }
-    });
-    d.addValueEventListener(new ValueEventListener() {
-        @Override
-        public void onDataChange(DataSnapshot snapshot) {
-            if(!arrayList.isEmpty())arrayList.clear();
-            for(DataSnapshot dataSnapshot:snapshot.getChildren()){
-                container h=dataSnapshot.getValue(container.class);
-                arrayList.add(h);
+        addbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(MapActivity.this, JobDetails.class);
+                startActivity(it);
             }
-            loadshops(mMap,arrayList);
-        }
-
-        @Override
-        public void onCancelled(DatabaseError error) {
-
-        }
-    });
-    d.addListenerForSingleValueEvent(new ValueEventListener(){
-        @Override
-        public void onDataChange(DataSnapshot snapshot) {
-            if(!arrayList.isEmpty())arrayList.clear();
-            for(DataSnapshot dataSnapshot:snapshot.getChildren()){
-                container h=dataSnapshot.getValue(container.class);
+        });
+        logoutbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent it = new Intent(MapActivity.this, MainActivity.class);
+                startActivity(it);
+                finish();
+            }
+        });
+        d.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                if (!arrayList.isEmpty()) arrayList.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    container h = dataSnapshot.getValue(container.class);
                     arrayList.add(h);
+                }
+                loadshops(mMap, arrayList);
             }
-            loadshops(mMap,arrayList);
-            Toast.makeText(MapActivity.this,"You can press the gear icon to add your shop",Toast.LENGTH_SHORT).show();
-        }
 
-        @Override
-        public void onCancelled(DatabaseError error) {
+            @Override
+            public void onCancelled(DatabaseError error) {
 
-        }
-    });
+            }
+        });
+        d.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                if (!arrayList.isEmpty()) arrayList.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    container h = dataSnapshot.getValue(container.class);
+                    arrayList.add(h);
+                }
+                loadshops(mMap, arrayList);
+                Toast.makeText(MapActivity.this, "You can press the gear icon to add your shop", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+
+            }
+        });
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void update_distances() {
-        float [] result=new float[10];
-        for(Map.Entry m:helper.entrySet()) {
+        float[] result = new float[10];
+        for (Map.Entry m : helper.entrySet()) {
             container c1 = (container) m.getValue();
             Marker a = (Marker) m.getKey();
             Location.distanceBetween(currentlatlag.latitude, currentlatlag.longitude, a.getPosition().latitude, a.getPosition().longitude, result);
             DecimalFormat decimalFormat = new DecimalFormat("#.##");
             result[0] = Float.valueOf(decimalFormat.format(result[0] / 1000.0));
-            a.setTitle(c1.getName()+"("+result[0]+"kms away)");
+            a.setTitle(c1.getName() + "(" + result[0] + "kms away)");
         }
 
     }
@@ -189,6 +206,7 @@ update_distances();            }
             return false;
         }
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -196,6 +214,7 @@ update_distances();            }
             mLocationPermissionGranted = true;
         }
     }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -208,12 +227,11 @@ update_distances();            }
             @Override
             public boolean onMarkerClick(Marker marker) {
                 container c1 = hashMap.get(marker.getPosition());
-                String sp=clicks.get(marker.getPosition());
-                if(sp!=null&&sp.equals("0")){
-                    clicks.forEach((a,b)->clicks.put(a,"0"));
-                    clicks.put(marker.getPosition(),"1");
-                }
-                else{
+                String sp = clicks.get(marker.getPosition());
+                if (sp != null && sp.equals("0")) {
+                    clicks.forEach((a, b) -> clicks.put(a, "0"));
+                    clicks.put(marker.getPosition(), "1");
+                } else {
                     if (c1 != null) {
                         c1.setDistance(marker.getTitle());
                         Intent it = new Intent(MapActivity.this, shop_details.class);
@@ -237,35 +255,59 @@ update_distances();            }
         });
         mMap.setMyLocationEnabled(true);
     }
-    private void loadshops(GoogleMap mMap,ArrayList<container>arr) {
 
-        for(container c:arr){
-            if(c!=null){
-            Log.w(TAG,c.getLocation());
-            geolocate(c);}
+    private void loadshops(GoogleMap mMap, ArrayList<container> arr) {
+
+        for (container c : arr) {
+            if (c != null) {
+                Log.w(TAG, c.getLocation());
+                geolocate(c);
+            }
         }
         dialog.dismiss();
     }
+
     public void geolocate(container c) {
 
-        String adress=c.getLocation();
-        Geocoder geocoder=new Geocoder(this, Locale.getDefault());
+        String adress = c.getLocation();
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
         try {
-            List<Address> adresslist=geocoder.getFromLocationName(adress,1);
-            if(adresslist.size()>0){
-                ad=adresslist.get(0);
+            List<Address> adresslist = geocoder.getFromLocationName(adress, 1);
+            if (adresslist.size() > 0) {
+                ad = adresslist.get(0);
                 ad.setCountryName("India");
-                LatLng gang=new LatLng(ad.getLatitude(),ad.getLongitude());
+                LatLng gang = new LatLng(ad.getLatitude(), ad.getLongitude());
                 //         showmarker(gang);
-                float []result=new float[10];
-                Location.distanceBetween(currentlatlag.latitude,currentlatlag.longitude,gang.latitude,gang.longitude,result);
-                DecimalFormat decimalFormat=new DecimalFormat("#.##");
-                result[0]=Float.valueOf(decimalFormat.format(result[0]/1000.0));
-               Marker mkr= mMap.addMarker(new MarkerOptions().position(gang).title(c.getName()+"("+result[0]+"kms away)"));
-               hashMap.put(mkr.getPosition(),c);
-               clicks.put(mkr.getPosition(),"0");
-               helper.put(mkr,c);
-                c.setDistance(""+result[0]);
+                float[] result = new float[10];
+                if (currentlatlag == null) {
+                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        return;
+                    }
+                    mFusedLocationclient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+                        @Override
+                        public void onComplete(Task<Location> task) {
+                            Location.distanceBetween(currentlatlag.latitude, currentlatlag.longitude, gang.latitude, gang.longitude, result);
+                            DecimalFormat decimalFormat = new DecimalFormat("#.##");
+                            result[0] = Float.valueOf(decimalFormat.format(result[0] / 1000.0));
+                            Marker mkr = mMap.addMarker(new MarkerOptions().position(gang).title(c.getName() + "(" + result[0] + "kms away)"));
+                            hashMap.put(mkr.getPosition(), c);
+                            clicks.put(mkr.getPosition(), "0");
+                            helper.put(mkr, c);
+                            c.setDistance("" + result[0]);
+                        }
+                    });
+                }
+                if(currentlatlag!=null){
+                    Log.w(TAG,"ochindhandi vayyari");
+                    Location.distanceBetween(currentlatlag.latitude, currentlatlag.longitude, gang.latitude, gang.longitude, result);
+                    DecimalFormat decimalFormat = new DecimalFormat("#.##");
+                    result[0] = Float.valueOf(decimalFormat.format(result[0] / 1000.0));
+                    Marker mkr = mMap.addMarker(new MarkerOptions().position(gang).title(c.getName() + "(" + result[0] + "kms away)"));
+                    hashMap.put(mkr.getPosition(), c);
+                    clicks.put(mkr.getPosition(), "0");
+                    helper.put(mkr, c);
+                    c.setDistance("" + result[0]);
+                }
             }
         } catch (IOException e) {
 

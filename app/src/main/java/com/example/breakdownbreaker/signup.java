@@ -1,4 +1,5 @@
 package com.example.breakdownbreaker;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -7,16 +8,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 public class signup extends AppCompatActivity {
-    EditText namei,emaili,contacti,vehiclei;
+    EditText namei,emaili,contacti,vehiclei,passwordi;
     String name;
     String email;
-    String vehicle_no,contact;
+    String vehicle_no,contact,password;
     Button b;
     FirebaseAuth mAuth=FirebaseAuth.getInstance();
     FirebaseUser firebaseUser=mAuth.getCurrentUser();
@@ -29,6 +33,7 @@ public class signup extends AppCompatActivity {
         namei=(EditText)findViewById(R.id.name);
         emaili=(EditText)findViewById(R.id.email);
         contacti=(EditText)findViewById(R.id.contact);
+        passwordi=(EditText)findViewById(R.id.password);
         vehiclei=(EditText)findViewById(R.id.vehicle);
         b=(Button)findViewById(R.id.post_button);
         firebaseUser=mAuth.getCurrentUser();
@@ -37,8 +42,15 @@ public class signup extends AppCompatActivity {
         public void onClick(View v) {
             setfields();
             user u=new user(name,email,vehicle_no,contact);
-            signup(u);
+            mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(Task<AuthResult> task) {
+                     if(task.isSuccessful())firebaseUser=mAuth.getCurrentUser();
+                     else Toast.makeText(signup.this,"Invalid credentials",Toast.LENGTH_SHORT).show();
 
+                }
+            });
+            signup(u);
         }
     });}
     private void signup(user u){
@@ -55,5 +67,6 @@ public class signup extends AppCompatActivity {
         email=emaili.getText().toString();
         contact=contacti.getText().toString();
         vehicle_no=vehiclei.getText().toString();
+        password=passwordi.getText().toString();
     }
 }

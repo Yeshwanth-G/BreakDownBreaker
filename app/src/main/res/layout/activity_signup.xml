@@ -9,7 +9,8 @@
         android:id="@+id/heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="600dp" android:fontFamily="@font/font2"
+        android:layout_marginBottom="600dp"
+        android:fontFamily="@font/font2"
         android:text="Register"
         android:textColor="@color/basecolor"
         android:textSize="30dp"
@@ -28,21 +29,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/heading"/>
     <EditText
-        android:id="@+id/email"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:hint="email id(will be used for signing in later)"
-        android:layout_marginTop="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/heading"/>
-
-    <EditText
         android:id="@+id/contact"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
         android:hint="contact details"
+        android:layout_marginTop="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/heading"/>
@@ -51,12 +42,29 @@
         android:id="@+id/vehicle"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="150dp"
         android:hint="vehicle no.(optional)"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heading"/>
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:hint="email id(will be used for signing in later)"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/heading" />
-
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:hint="Password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heading"/>
     <Button
         android:id="@+id/post_button"
         android:layout_width="wrap_content"

@@ -6,15 +6,87 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/button"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/signinbutton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:backgroundTint="@color/basecolor"
+        app:cornerRadius="30dp"
+        android:text="SIGN IN"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pgbar" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/signup_btn"
+        app:layout_constraintTop_toBottomOf="@+id/signinbutton">
+    </com.google.android.gms.common.SignInButton>
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:padding="10dp"
+        app:startIconDrawable="@drawable/ic_baseline_person_24"
+        app:boxCornerRadiusBottomEnd="6dp"
+        app:boxCornerRadiusBottomStart="6dp"
+        app:boxCornerRadiusTopEnd="6dp"
+        app:boxCornerRadiusTopStart="6dp"
+        app:boxStrokeColor="#0C0C0C"
+        app:boxStrokeWidth="2dp"
+        app:expandedHintEnabled="true"
+        app:hintTextColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:id="@+id/email"
+            android:layout_height="wrap_content"
+            android:hint="Email address"
+
+            ></com.google.android.material.textfield.TextInputEditText>
+
+    </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:padding="10dp"
+            app:startIconDrawable="@drawable/ic_baseline_person_24"
+            app:endIconDrawable="@drawable/ic_baseline_remove_red_eye_24"
+            app:boxCornerRadiusBottomEnd="6dp"
+            app:boxCornerRadiusBottomStart="6dp"
+            app:boxCornerRadiusTopEnd="6dp"
+            app:boxCornerRadiusTopStart="6dp"
+            app:boxStrokeColor="#090909"
+            app:boxStrokeWidth="2dp"
+            app:expandedHintEnabled="true"
+            app:hintTextColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:id="@+id/password"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+
+                ></com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
 
     <ProgressBar
         android:id="@+id/pgbar"
@@ -35,18 +107,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cornerRadius="20dp"
+        android:layout_marginRight="120dp"
         android:text="Sign Up"
         android:backgroundTint="@color/basecolor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/signinbutton" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="274dp"
-        android:layout_height="317dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        android:layout_width="258dp"
+        android:layout_height="283dp"
+        android:layout_marginBottom="200dp"
+        app:layout_constraintBottom_toTopOf="@+id/signinbutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
